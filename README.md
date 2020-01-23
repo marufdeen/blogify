@@ -67,6 +67,6 @@ A blog application that enables you to create a post, edit ,delete and access co
 
 ## License and Copyright
 
-&copy; Nouwatin Jacob
+&copy; Ajagunna Maruf
 
 Licensed under the [MIT License](LICENSE).
