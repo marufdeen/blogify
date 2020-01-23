@@ -63,7 +63,7 @@ A blog application that enables you to create a post, edit ,delete and access co
 
 ## User template is available on
 
-- [blogify](https://ajagunnamaruf.github.io/blogify)
+- [blogify](https://code2031.github.io/blogify)
 
 ## License and Copyright
 
