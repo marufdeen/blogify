@@ -1,0 +1,4 @@
+node_modules/
+dummyServer/
+package-lock.json
+.env
