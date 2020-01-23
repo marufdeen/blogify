@@ -55,7 +55,7 @@ A blog application that enables you to create a post, edit ,delete and access co
 * Who can contribute ?
   - Anyone can contribute as long as you would follow the contribution guides outlined above
 * Is the application hosted online ?
-  - Yes, the application is hosted on heroku platform. You can always visit it via this link [https://blogify-v1.herokuapp.com/](https://blogify-v1.herokuapp.com/)
+  - Yes, the application is hosted on heroku platform. You can always visit it via this link [https://blogify-v3.herokuapp.com/](https://blogify-v1.herokuapp.com/)
 * Does the application have an API ?
   - Yes, The application has a well documented API that can be viewed via a link in the API documentation section above
 * Is the application licensed ?
