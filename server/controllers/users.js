@@ -57,17 +57,17 @@ export default class users {
       await bcrypt.compare(password, userFound.password, (error, result) => {
         if (result) {
           return res.status(200).json({
-            message: 'Access Granted!',
+            message: 'Access granted!',
             token: createToken(userFound)
           });
         }
         return res.status(401).json({
-          message: 'Email and Password not match!'
+          message: 'Email and password not match!'
         });
       });
     } else {
       return res.status(400).json({
-        message: 'Invalid Credentials!'
+        message: 'Access denied!'
       });
     }
   }

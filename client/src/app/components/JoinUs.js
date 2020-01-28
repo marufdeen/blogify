@@ -1,7 +1,10 @@
 import React from 'react';
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { registerUser, loginUser } from '../../actions/authActions'
 
-export default class JoinUs extends React.Component {
+class JoinUs extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -10,43 +13,44 @@ export default class JoinUs extends React.Component {
             email: '',
             password: '',
             confirmPassword: '',
-            phone: '',
             role: 0,
-            sinupError: null,
-            successMessage: null,
+            signupError: null,
             loginError: null
         };
         this.onChange = this.onChange.bind(this);
     }
-
-    loginUser(e) {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ 
+                signupError: nextProps.errors,
+                loginError: nextProps.errors
+              })
+        }
+    }
+    signinUser(e) {
         e.preventDefault();
         const loginDetails = {
             email: this.state.email,
             password: this.state.password,
         }
-        axios.post('http://localhost:5000/api/v3/login', loginDetails)
-            .then(res => console.log(res.data))
-            .catch(err => this.setState({ loginError: err.response.data }));
+        this.props.loginUser(loginDetails, this.props.history);
+        
     }
-    registerUser(e) {
+    signupUser(e) {
         e.preventDefault();
         const signupDetails = { ...this.state }
-        axios.post('http://localhost:5000/api/v3/register', signupDetails)
-            .then(res => this.setState({ successMessage: res.data }))
-            .catch(err => this.setState({ sinupError: err.response.data }))
+        this.props.registerUser(signupDetails, this.props.history);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
     render() {
-        const { sinupError, successMessage, loginError } = this.state;
-
+        const { signupError, loginError } = this.state;
+        console.log(loginError);
         const style = {
             color: 'red',
-            fontSize: '13px',
-            fontWeight: 'bold'
+            fontSize: '13px'
         };
         return (
             <div className="container">
@@ -58,36 +62,32 @@ export default class JoinUs extends React.Component {
                                 <h1>Register</h1>
                             </div>
                         </div>
-                        {
-                            successMessage ?
-                                <div className="alert alert-success"> You are successfully registered. </div> : null
-                        }
-                        <form onSubmit={this.registerUser.bind(this)}>
+                        <form onSubmit={this.signupUser.bind(this)}>
                             <div className="row">
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="firstName"> First Name</label>
                                     <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChange} className="form-control" />
-                                    {sinupError ? <i style={style}> {sinupError.errors.firstName} </i> : ''}
+                                    {signupError ? <i style={style}> {signupError.errors.firstName} </i> : ''}
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="lastName">Last Name</label>
                                     <input type="text" name="lastName" value={this.state.lastName} onChange={this.onChange} className="form-control" />
-                                    {sinupError ? <i style={style}> {sinupError.errors.lastName} </i> : ''}
+                                    {signupError ? <i style={style}> {signupError.errors.lastName} </i> : ''}
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="email">Email</label>
                                     <input type="email" name="email" value={this.state.email} onChange={this.onChange} className="form-control" />
-                                    {sinupError ? <i style={style}> {sinupError.errors.email} </i> : ''}
+                                    {signupError ? <i style={style}> {signupError.errors.email} </i> : ''}
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="password">Password</label>
                                     <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />
-                                    {sinupError ? <i style={style}> {sinupError.errors.password} </i> : '' }
+                                    {signupError ? <i style={style}> {signupError.errors.password} </i> : ''}
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="password">Confirm Password</label>
                                     <input type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.onChange} className="form-control" />
-                                    {sinupError ? <i style={style}> {sinupError.errors.confirmPassword} </i> : null
+                                    {signupError ? <i style={style}> {signupError.errors.confirmPassword} </i> : null
                                     }
                                 </div>
                             </div>
@@ -106,15 +106,19 @@ export default class JoinUs extends React.Component {
                                 <h1>Login</h1>
                             </div>
                         </div>
-                        <form onSubmit={this.loginUser.bind(this)}>
+                        {
+                            loginError ?
+                                <div className="alert alert-danger"> {loginError.message || loginError.errors.password || loginError.errors.email} </div> : null 
+                        }
+                        <form onSubmit={this.signinUser.bind(this)}>
                             <div className="row">
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="email">Email</label>
                                     <input type="email" name="email" value={this.state.email} onChange={this.onChange} className="form-control" />
-                                </div>
+                                </div>  
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />
+                                    <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />  
                                 </div>
                             </div>
                             <div className="row">
@@ -130,3 +134,14 @@ export default class JoinUs extends React.Component {
         )
     }
 }
+JoinUs.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+    errors: state.errors
+});
+export default connect(mapStateToProps, { registerUser, loginUser })(withRouter(JoinUs));

@@ -13,7 +13,7 @@ export const validateSignup = async (req, res, next) => {
 
 export const validateSignin = async (req, res, next) => {
   const errors = await validation.signinValidations(req.body);
-  if (errors[0]) {
+  if (Object.keys(errors).length > 0) {
     return res.status(400).json({
       errors
     });

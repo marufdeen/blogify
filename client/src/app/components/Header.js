@@ -31,8 +31,6 @@ export default class Header extends React.Component {
             
             <nav className="navbar navbar-expand-md  navbar-light bg-light">
               <div className="container">
-                
-               
                 <div className="collapse navbar-collapse" id="navbarMenu">
                   <ul className="navbar-nav mx-auto">
                     <li className="nav-item">
@@ -41,11 +39,7 @@ export default class Header extends React.Component {
                     <li className="nav-item">
                       <Link className="nav-link" to="/join">Join</Link>
                     </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/contact">Contact</Link>
-                    </li>
                   </ul>
-                  
                 </div>
               </div>
             </nav>

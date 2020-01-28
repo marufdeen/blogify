@@ -27,7 +27,7 @@ export default class validations {
 
     if (!lastName || lastName.length < 3 || !validName.test(lastName)) {
       signupErrors.lastName = [];
-      signupErrors.lastName.push('First name is required, with at least three alphabetical characters');
+      signupErrors.lastName.push('Last name is required, with at least three alphabetical characters');
     }
 
     if (!email || !validEmail.test(email)) {
@@ -67,18 +67,16 @@ export default class validations {
 
   static signinValidations(body) {
     const { email, password } = body;
-    const siginErrors = [];
+    const siginErrors = {};
 
     if (!email || !validEmail.test(email)) {
-      siginErrors.push({
-        Email: 'Invalid Email Format'
-      });
+      siginErrors.email = [];
+      siginErrors.email.push('Invalid Email Format');
     }
 
     if (!password || password.length < 2) {
-      siginErrors.push({
-        Password: 'Password must be at least three characters'
-      });
+      siginErrors.password = [];
+      siginErrors.password.push('Password must be at least three characters');
     }
 
     return siginErrors;
