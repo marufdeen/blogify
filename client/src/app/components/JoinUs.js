@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { registerUser, loginUser } from '../../actions/authActions'
+import { registerUser, loginUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
 
 class JoinUs extends React.Component {
     constructor() {
@@ -21,10 +21,10 @@ class JoinUs extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-            this.setState({ 
+            this.setState({
                 signupError: nextProps.errors,
                 loginError: nextProps.errors
-              })
+            })
         }
     }
     signinUser(e) {
@@ -33,13 +33,12 @@ class JoinUs extends React.Component {
             email: this.state.email,
             password: this.state.password,
         }
-        this.props.loginUser(loginDetails, this.props.history);
-        
+        this.props.login(loginDetails, this.props.history)
     }
     signupUser(e) {
         e.preventDefault();
         const signupDetails = { ...this.state }
-        this.props.registerUser(signupDetails, this.props.history);
+        this.props.register(signupDetails, this.props.history);
     }
 
     onChange(e) {
@@ -47,11 +46,7 @@ class JoinUs extends React.Component {
     }
     render() {
         const { signupError, loginError } = this.state;
-        console.log(loginError);
-        const style = {
-            color: 'red',
-            fontSize: '13px'
-        };
+        const style = { color: 'red', fontSize: '13px' };
         return (
             <div className="container">
                 <div className="row blog-entries">
@@ -108,17 +103,17 @@ class JoinUs extends React.Component {
                         </div>
                         {
                             loginError ?
-                                <div className="alert alert-danger"> {loginError.message || loginError.errors.password || loginError.errors.email} </div> : null 
+                                <div className="alert alert-danger"> {loginError.message || loginError.errors.password || loginError.errors.email} </div> : null
                         }
                         <form onSubmit={this.signinUser.bind(this)}>
                             <div className="row">
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="email">Email</label>
                                     <input type="email" name="email" value={this.state.email} onChange={this.onChange} className="form-control" />
-                                </div>  
+                                </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />  
+                                    <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />
                                 </div>
                             </div>
                             <div className="row">
@@ -139,9 +134,9 @@ JoinUs.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
-  };
+};
 const mapStateToProps = (state) => ({
     auth: state.auth,
     errors: state.errors
 });
-export default connect(mapStateToProps, { registerUser, loginUser })(withRouter(JoinUs));
+export default connect(mapStateToProps, {register: registerUser, login: loginUser})(withRouter(JoinUs));
