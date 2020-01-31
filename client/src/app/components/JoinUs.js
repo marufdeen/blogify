@@ -13,13 +13,14 @@ class JoinUs extends React.Component {
             email: '',
             password: '',
             confirmPassword: '',
-            role: 0,
-            signupError: null,
-            loginError: null
+            role: 0
         };
         this.onChange = this.onChange.bind(this);
     }
     componentWillReceiveProps(nextProps) {
+        if(nextProps.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
         if (nextProps.errors) {
             this.setState({
                 signupError: nextProps.errors,
