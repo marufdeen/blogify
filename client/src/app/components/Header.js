@@ -1,7 +1,59 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-export default class Header extends React.Component {
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
+import propTypes from 'prop-types';
+
+class Header extends React.Component {
+
+  onLogoutClick(e) {
+  e.preventDefault();
+  this.props.logoutUser();
+  this.props.history.push('/join');
+}
+
     render() {
+      const { isAuthenticated, user } = this.props.auth;
+
+      const authLinks = (
+        <nav className="navbar navbar-expand-md  navbar-light bg-light">
+        <div className="container">
+          <div className="collapse navbar-collapse" id="navbarMenu">
+            <ul className="navbar-nav mx-auto">
+              <li className="nav-item">
+                <Link className="nav-link active" to="/dashboard">New Post</Link>
+              </li> 
+              <li className="nav-item">
+                <Link className="nav-link active" to="/dashboard">My Posts</Link>
+              </li> 
+              <li className="nav-item">
+                <Link className="nav-link active" to="/dashboard">Profile</Link>
+              </li> 
+              <li className="nav-item">
+                <a href='' onClick = { this.onLogoutClick.bind(this) } className="nav-link">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      );
+      const guestLinks = (
+        <nav className="navbar navbar-expand-md  navbar-light bg-light">
+        <div className="container">
+          <div className="collapse navbar-collapse" id="navbarMenu">
+            <ul className="navbar-nav mx-auto">
+              <li className="nav-item">
+                <Link className="nav-link active" to="/">Home</Link>
+              </li> 
+              <li className="nav-item">
+                <Link className="nav-link" to="/join">Join</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      )
         return (
             <header role="banner">
             <div className="top-bar">
@@ -29,21 +81,21 @@ export default class Header extends React.Component {
               </div>
             </div>
             
-            <nav className="navbar navbar-expand-md  navbar-light bg-light">
-              <div className="container">
-                <div className="collapse navbar-collapse" id="navbarMenu">
-                  <ul className="navbar-nav mx-auto">
-                    <li className="nav-item">
-                      <Link className="nav-link active" to="/">Home</Link>
-                    </li> 
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/join">Join</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
+             { isAuthenticated ? authLinks : guestLinks }
           </header>
         )
     }
 };
+
+Header.propTypes = {
+  logoutUser: propTypes.func.isRequired,
+  auth: propTypes.object.isRequired
+
+}
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+export default connect(mapStateToProps, { logoutUser })(withRouter(Header));

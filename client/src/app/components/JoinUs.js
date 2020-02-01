@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser, loginUser } from '../../actions/authActions';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 class JoinUs extends React.Component {
     constructor() {
@@ -13,12 +13,22 @@ class JoinUs extends React.Component {
             email: '',
             password: '',
             confirmPassword: '',
-            role: 0
+            role: 0,
+            signupError: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            },
+            loginError: {
+                message: ''
+            }
         };
         this.onChange = this.onChange.bind(this);
     }
     componentWillReceiveProps(nextProps) {
-        if(nextProps.auth.isAuthenticated) {
+        if (nextProps.auth.isAuthenticated) {
             this.props.history.push('/dashboard');
         }
         if (nextProps.errors) {
@@ -47,6 +57,7 @@ class JoinUs extends React.Component {
     }
     render() {
         const { signupError, loginError } = this.state;
+        console.log(loginError) 
         const style = { color: 'red', fontSize: '13px' };
         return (
             <div className="container">
@@ -63,28 +74,28 @@ class JoinUs extends React.Component {
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="firstName"> First Name</label>
                                     <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChange} className="form-control" />
-                                    {signupError ? <i style={style}> {signupError.errors.firstName} </i> : ''}
+                                    {signupError ? <i style={style}> {signupError.firstName} </i> : ''} 
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="lastName">Last Name</label>
                                     <input type="text" name="lastName" value={this.state.lastName} onChange={this.onChange} className="form-control" />
-                                    {signupError ? <i style={style}> {signupError.errors.lastName} </i> : ''}
+                                     {signupError ? <i style={style}> {signupError.lastName} </i> : ''}
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="email">Email</label>
                                     <input type="email" name="email" value={this.state.email} onChange={this.onChange} className="form-control" />
-                                    {signupError ? <i style={style}> {signupError.errors.email} </i> : ''}
+                                      {signupError ? <i style={style}> {signupError.email} </i> : ''}  
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="password">Password</label>
                                     <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />
-                                    {signupError ? <i style={style}> {signupError.errors.password} </i> : ''}
+                                     {signupError ? <i style={style}> {signupError.password} </i> : ''}  
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <label htmlFor="password">Confirm Password</label>
                                     <input type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.onChange} className="form-control" />
-                                    {signupError ? <i style={style}> {signupError.errors.confirmPassword} </i> : null
-                                    }
+                                     {signupError ? <i style={style}> {signupError.confirmPassword} </i> : null
+                                    }  
                                 </div>
                             </div>
                             <div className="row">
@@ -102,10 +113,10 @@ class JoinUs extends React.Component {
                                 <h1>Login</h1>
                             </div>
                         </div>
-                        {
-                            loginError ?
-                                <div className="alert alert-danger"> {loginError.message || loginError.errors.password || loginError.errors.email} </div> : null
-                        }
+                         {
+                            loginError.message ?
+                                <div className="alert alert-danger"> {loginError.message  } </div> : null
+                        }  
                         <form onSubmit={this.signinUser.bind(this)}>
                             <div className="row">
                                 <div className="col-md-12 form-group">
@@ -119,7 +130,7 @@ class JoinUs extends React.Component {
                             </div>
                             <div className="row">
                                 <div className="col-md-6 form-group">
-                                    <input type="submit" value="Login" className="btn btn-primary" />
+                                <input type="submit" value="Login" className="btn btn-primary" />
                                 </div>
                             </div>
                         </form>
@@ -130,14 +141,12 @@ class JoinUs extends React.Component {
         )
     }
 }
-JoinUs.propTypes = {
-    registerUser: PropTypes.func.isRequired,
-    loginUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+JoinUs.propTypes = { 
+    auth: propTypes.object.isRequired,
+    errors: propTypes.object.isRequired
 };
 const mapStateToProps = (state) => ({
     auth: state.auth,
     errors: state.errors
 });
-export default connect(mapStateToProps, {register: registerUser, login: loginUser})(withRouter(JoinUs));
+export default connect(mapStateToProps, { register: registerUser, login: loginUser })(withRouter(JoinUs));
