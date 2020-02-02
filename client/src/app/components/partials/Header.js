@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../actions/authActions';
+import { logoutUser } from '../../../actions/authActions';
 import propTypes from 'prop-types';
 
 class Header extends React.Component {
@@ -15,23 +15,25 @@ class Header extends React.Component {
 
     render() {
       const { isAuthenticated, user } = this.props.auth;
-
       const authLinks = (
         <nav className="navbar navbar-expand-md  navbar-light bg-light">
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarMenu">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
-                <Link className="nav-link active" to="/dashboard">New Post</Link>
+                <Link className="nav-link active" to="/">Home</Link>
               </li> 
               <li className="nav-item">
-                <Link className="nav-link active" to="/dashboard">My Posts</Link>
+                <Link className="nav-link" to="/newPost">|Create Post|</Link>
               </li> 
               <li className="nav-item">
-                <Link className="nav-link active" to="/dashboard">Profile</Link>
+                <Link className="nav-link" to="/myPosts">|My Posts|</Link>
               </li> 
               <li className="nav-item">
-                <a href='' onClick = { this.onLogoutClick.bind(this) } className="nav-link">Logout</a>
+                <Link className="nav-link " to="/dashboard">|Profile|</Link>
+              </li> 
+              <li className="nav-item">
+                <a href='' onClick = { this.onLogoutClick.bind(this) } className="nav-link">|Logout|</a>
               </li>
             </ul>
           </div>
@@ -46,6 +48,9 @@ class Header extends React.Component {
               <li className="nav-item">
                 <Link className="nav-link active" to="/">Home</Link>
               </li> 
+              <li className="nav-item">
+                <Link className="nav-link" to="/bloggers">Bloggers</Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/join">Join</Link>
               </li>

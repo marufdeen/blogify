@@ -2,7 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser, loginUser } from '../../actions/authActions';
-import propTypes from 'prop-types';
+import TextField from './partials/TextField';
+import PropTypes from 'prop-types';
 
 class JoinUs extends React.Component {
     constructor() {
@@ -27,6 +28,11 @@ class JoinUs extends React.Component {
         };
         this.onChange = this.onChange.bind(this);
     }
+    componentDidMount(){
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
+    }
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
             this.props.history.push('/dashboard');
@@ -44,12 +50,12 @@ class JoinUs extends React.Component {
             email: this.state.email,
             password: this.state.password,
         }
-        this.props.login(loginDetails, this.props.history)
+        this.props.loginUser(loginDetails, this.props.history)
     }
     signupUser(e) {
         e.preventDefault();
         const signupDetails = { ...this.state }
-        this.props.register(signupDetails, this.props.history);
+        this.props.registerUser(signupDetails, this.props.history);
     }
 
     onChange(e) {
@@ -71,32 +77,46 @@ class JoinUs extends React.Component {
                         </div>
                         <form onSubmit={this.signupUser.bind(this)}>
                             <div className="row">
-                                <div className="col-md-12 form-group">
-                                    <label htmlFor="firstName"> First Name</label>
-                                    <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChange} className="form-control" />
-                                    {signupError ? <i style={style}> {signupError.firstName} </i> : ''} 
-                                </div>
-                                <div className="col-md-12 form-group">
-                                    <label htmlFor="lastName">Last Name</label>
-                                    <input type="text" name="lastName" value={this.state.lastName} onChange={this.onChange} className="form-control" />
-                                     {signupError ? <i style={style}> {signupError.lastName} </i> : ''}
-                                </div>
-                                <div className="col-md-12 form-group">
-                                    <label htmlFor="email">Email</label>
-                                    <input type="email" name="email" value={this.state.email} onChange={this.onChange} className="form-control" />
-                                      {signupError ? <i style={style}> {signupError.email} </i> : ''}  
-                                </div>
-                                <div className="col-md-12 form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />
-                                     {signupError ? <i style={style}> {signupError.password} </i> : ''}  
-                                </div>
-                                <div className="col-md-12 form-group">
-                                    <label htmlFor="password">Confirm Password</label>
-                                    <input type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.onChange} className="form-control" />
-                                     {signupError ? <i style={style}> {signupError.confirmPassword} </i> : null
-                                    }  
-                                </div>
+                                <TextField 
+                                placeholder = 'First Name'
+                                name = 'firstName'
+                                type = 'text'
+                                value = {this.state.firstName}
+                                onChange = {this.onChange}
+                                error = {signupError.firstName}
+                                 />
+                                <TextField
+                                placeholder = 'Last Name'
+                                name = 'lastName'
+                                type = 'text'
+                                value = {this.state.lastName}
+                                onChange = {this.onChange}
+                                error = {signupError.lastName}
+                                 />
+                                <TextField
+                                placeholder = 'Email'
+                                name = 'email'
+                                type = 'email'
+                                value = {this.state.email}
+                                onChange = {this.onChange}
+                                error = {signupError.email}
+                                 />
+                                <TextField
+                                placeholder = 'Password'
+                                name = 'password'
+                                type = 'password'
+                                value = {this.state.password}
+                                onChange = {this.onChange}
+                                error = {signupError.password}
+                                 />
+                                <TextField
+                                placeholder = 'Confirm Password'
+                                name = 'confirmPassword'
+                                type = 'password'
+                                value = {this.state.confirmPassword}
+                                onChange = {this.onChange}
+                                error = {signupError.confirmPassword}
+                                 />
                             </div>
                             <div className="row">
                                 <div className="col-md-6 form-group">
@@ -115,18 +135,24 @@ class JoinUs extends React.Component {
                         </div>
                          {
                             loginError.message ?
-                                <div className="alert alert-danger"> {loginError.message  } </div> : null
+                            <div className="alert alert-danger"> {loginError.message } </div> : null
                         }  
                         <form onSubmit={this.signinUser.bind(this)}>
                             <div className="row">
-                                <div className="col-md-12 form-group">
-                                    <label htmlFor="email">Email</label>
-                                    <input type="email" name="email" value={this.state.email} onChange={this.onChange} className="form-control" />
-                                </div>
-                                <div className="col-md-12 form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <input type="password" name="password" value={this.state.password} onChange={this.onChange} className="form-control" />
-                                </div>
+                            <TextField
+                                placeholder = 'Email'
+                                name = 'email'
+                                type = 'email'
+                                value = {this.state.email}
+                                onChange = {this.onChange}
+                                 />
+                                <TextField
+                                placeholder = 'Password'
+                                name = 'password'
+                                type = 'password'
+                                value = {this.state.password}
+                                onChange = {this.onChange}
+                                 />
                             </div>
                             <div className="row">
                                 <div className="col-md-6 form-group">
@@ -141,12 +167,14 @@ class JoinUs extends React.Component {
         )
     }
 }
-JoinUs.propTypes = { 
-    auth: propTypes.object.isRequired,
-    errors: propTypes.object.isRequired
+JoinUs.PropTypes = { 
+    registerUser: PropTypes.func.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 };
 const mapStateToProps = (state) => ({
     auth: state.auth,
     errors: state.errors
 });
-export default connect(mapStateToProps, { register: registerUser, login: loginUser })(withRouter(JoinUs));
+export default connect(mapStateToProps, { registerUser, loginUser })(withRouter(JoinUs));
