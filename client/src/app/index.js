@@ -17,7 +17,7 @@ import Dashboard from './components/auth/Dashboard'
 if (localStorage.jwtToken) {
     // Set auth token header auth
     setAuthToken(localStorage.jwtToken);
-    // Decode token and get user info and expiration
+    // Decode token to get user info and expiration
     const decoded = jwtDecode(localStorage.jwtToken);
     // Set user and isAuthenticated
     store.dispatch(setCurrentUser(decoded));

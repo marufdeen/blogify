@@ -118,7 +118,29 @@ export default class users {
   }
 
   /**
-     * @description Edit user details
+     * @description Get profile
+     * @method getProfile
+     * @param {*} req
+     * @param {*} res
+     */
+  static async getProfile(req, res) {
+    const userId = parseInt(req.decode.userId);
+    const userFound = await User.findOne({
+      where: { id: userId }
+    });
+    if (userFound) {
+      return res.status(200).json({
+        message: 'Profile found!',
+        userFound
+      });
+    }
+    return res.status(404).json({
+      message: 'User not found'
+    });
+  }
+
+  /**
+     * @description Editprofile
      * @method editProfile
      * @param {*} req
      * @param {*} res
