@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../actions/authActions';
+import { clearCurrentProfile } from '../../../actions/profileActions';
 import propTypes from 'prop-types';
 
 class Header extends React.Component {
 
   onLogoutClick(e) {
   e.preventDefault();
+  this.props.clearCurrentProfile();
   this.props.logoutUser();
   this.props.history.push('/join');
 }
@@ -22,16 +24,16 @@ class Header extends React.Component {
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <Link className="nav-link active" to="/">Home</Link>
+              </li>  
+              <li className="nav-item">
+                <Link className="nav-link " to="/dashboard">|Profile|</Link>
               </li> 
               <li className="nav-item">
                 <Link className="nav-link" to="/newPost">|Create Post|</Link>
               </li> 
               <li className="nav-item">
                 <Link className="nav-link" to="/myPosts">|My Posts|</Link>
-              </li> 
-              <li className="nav-item">
-                <Link className="nav-link " to="/dashboard">|Profile|</Link>
-              </li> 
+              </li>
               <li className="nav-item">
                 <a href='' onClick = { this.onLogoutClick.bind(this) } className="nav-link">|Logout|</a>
               </li>
@@ -103,4 +105,4 @@ const mapStateToProps = (state) => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps, { logoutUser })(withRouter(Header));
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(withRouter(Header));

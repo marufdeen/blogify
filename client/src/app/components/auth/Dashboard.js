@@ -1,52 +1,64 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getCurrentProfile } from '../../../actions/profileActions';
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
+  componentDidMount(){
+    this.props.getCurrentProfile();
+  }
   render() {
+    const { user } = this.props.auth;
+    const { profile, loading } = this.props.profile;
+    let dashboardContent;
+
+    if (profile === null || loading) {
+      dashboardContent = <h1>Loading ...</h1>
+    } else {
+      // If logged in user has a profile
+      if (Object.keys(user).length < 0) {
+        dashboardContent = <h1>Display Profile</h1>
+      } else {
+      dashboardContent = <h2>Welcome!, { user.firstName }.</h2>
+      }
+    }
+    
     return (
       <div className="container">
-
         <div className="row mb-4">
           <div className="col-md-6">
-            <h1> Profile</h1>
+            {dashboardContent}
           </div>
         </div>
         <div className="row blog-entries">
           <div className="col-md-12 col-lg-8 main-content">
-
-            <form action="#" method="post">
               <div className="row">
                 <div className="col-md-12 form-group">
                   <label htmlFor="name">Name</label>
-                  <input type="text" id="name" className="form-control " />
+              <h4>  { user.lastName +' '+ user.firstName} </h4>
                 </div>
                 <div className="col-md-12 form-group">
-                  <label htmlFor="phone">Phone</label>
-                  <input type="text" id="phone" className="form-control " />
+                  <label htmlFor="name">Email</label>
+              <h4>  { user.email} </h4>
                 </div>
                 <div className="col-md-12 form-group">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" className="form-control " />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12 form-group">
-                  <label htmlFor="message">Write Message</label>
-                  <textarea name="message" id="message" className="form-control " cols="30" rows="8"></textarea>
+                  <label htmlFor="name">Role</label>
+              <h4>  { user.role} </h4>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-6 form-group">
-                  <input type="submit" value="Send Message" className="btn btn-primary" />
+                <p> Please set up your profile.</p>
+                  <Link to='/createProfile' className="btn btn-primary">Create Profile</Link>
                 </div>
               </div>
-            </form>
           </div>
           <div className="col-md-12 col-lg-4 sidebar">
             <div className="sidebar-box">
               <div className="bio text-center">
                 <img src="assets/images/person_1.jpg" alt="Image Placeholder" className="img-fluid" />
                 <div className="bio-body">
-                  <h2>Meagan Smith</h2>
+                  <h2>{ user.lastName +' '+ user.firstName} </h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
                   <p><a href="#" className="btn btn-primary btn-sm">Read my bio</a></p>
                   <p className="social">
@@ -63,7 +75,13 @@ export default class Dashboard extends React.Component {
 
       </div>
 
-
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    profile: state.profile,
+    auth: state.auth
+  }
+}
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);

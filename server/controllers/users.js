@@ -124,7 +124,7 @@ export default class users {
      * @param {*} res
      */
   static async getProfile(req, res) {
-    const userId = parseInt(req.decode.userId);
+    const userId = parseInt(req.decoded.userId);
     const userFound = await User.findOne({
       where: { id: userId }
     });
