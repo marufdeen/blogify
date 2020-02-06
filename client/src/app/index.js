@@ -12,6 +12,7 @@ import Header from './components/partials/Header';
 import Home from './components/Home';
 import JoinUs from './components/JoinUs';
 import Dashboard from './components/auth/Dashboard';
+import PrivateRoute from './components/partials/PrivateRoute';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -41,7 +42,7 @@ class App extends React.Component {
                         <Header />
                         <Route exact path='/' component={Home} />
                         <Route exact path='/join' component={JoinUs} />
-                        <Route exact path='/dashboard' component={Dashboard} />
+                        <PrivateRoute exact path='/dashboard' component={Dashboard} />
                     </div>
                 </Router>
             </Provider>
