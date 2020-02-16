@@ -11,6 +11,7 @@ export const createToken = (userData) => {
     firstName: userData.firstName,
     lastName: userData.lastName,
     email: userData.email,
+    profile: userData.profile,
     role: (() => ((userData.role === 1) ? 'Admin' : 'User'))()
   }, secret, {
     expiresIn: '1h'

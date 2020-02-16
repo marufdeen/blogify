@@ -14,7 +14,7 @@ const app = express.Router();
 app.post('/register', validateSignup, users.userRegister);
 app.post('/login', validateSignin, users.userLogin);
 app.get('/profile', verifyToken, isUserValid, users.getProfile);
-app.put('/editprofile/', verifyToken, isUserValid, validateEdit, users.editProfile);
+app.put('/editprofile/', users.editProfile);
 app.get('/users', verifyToken, isUserAdmin, users.getAllUsers);
 app.get('/users/:userId', verifyToken, isUserAdmin, users.getSingleUser);
 app.delete('/deleteuser/:userId', verifyToken, isUserAdmin, users.deleteUser);

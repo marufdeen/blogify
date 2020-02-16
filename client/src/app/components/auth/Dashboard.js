@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCurrentProfile } from '../../../actions/profileActions';
 
-class Dashboard extends React.Component {
-  componentDidMount(){
-    this.props.getCurrentProfile();
-  }
+class Dashboard extends Component {
+   
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
@@ -19,7 +16,7 @@ class Dashboard extends React.Component {
       if (Object.keys(user).length < 0) {
         dashboardContent = <h1>Display Profile</h1>
       } else {
-      dashboardContent = <h2>Welcome!, { user.firstName }.</h2>
+      dashboardContent = <h2>Welcome! { user.firstName }.</h2>
       }
     }
     
@@ -45,13 +42,13 @@ class Dashboard extends React.Component {
                   <label htmlFor="name">Role</label>
               <h4>  { user.role} </h4>
                 </div>
+
               </div>
-              <div className="row">
-                <div className="col-md-6 form-group">
-                <p> Please set up your profile.</p>
+              {
+                user.profile == false ? 
                   <Link to='/createProfile' className="btn btn-primary">Create Profile</Link>
-                </div>
-              </div>
+              :  <Link to='/viewProfile' className="btn btn-primary">View Profile</Link>
+              }
           </div>
           <div className="col-md-12 col-lg-4 sidebar">
             <div className="sidebar-box">
@@ -84,4 +81,4 @@ const mapStateToProps = (state) => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, {  })(Dashboard);

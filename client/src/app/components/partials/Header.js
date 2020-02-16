@@ -24,9 +24,12 @@ class Header extends React.Component {
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <Link className="nav-link active" to="/">Home</Link>
-              </li>  
+              </li> 
               <li className="nav-item">
-                <Link className="nav-link " to="/dashboard">|Profile|</Link>
+                <Link className="nav-link" to="/bloggers">Bloggers</Link>
+              </li> 
+              <li className="nav-item">
+                <Link className="nav-link " to="/dashboard">|Dashboard|</Link>
               </li> 
               <li className="nav-item">
                 <Link className="nav-link" to="/newPost">|Create Post|</Link>

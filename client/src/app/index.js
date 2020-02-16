@@ -12,7 +12,8 @@ import Header from './components/partials/Header';
 import Home from './components/Home';
 import JoinUs from './components/JoinUs';
 import Dashboard from './components/auth/Dashboard';
-import PrivateRoute from './components/partials/PrivateRoute';
+import CreateProfile from './components/auth/CreateProfile';
+import PrivateRoute from './components/auth/PrivateRoute';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -42,7 +43,10 @@ class App extends React.Component {
                         <Header />
                         <Route exact path='/' component={Home} />
                         <Route exact path='/join' component={JoinUs} />
+                        <Switch>
                         <PrivateRoute exact path='/dashboard' component={Dashboard} />
+                        <PrivateRoute exact path='/createProfile' component = {CreateProfile} />
+                        </Switch>
                     </div>
                 </Router>
             </Provider>

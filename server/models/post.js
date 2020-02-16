@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    contentImage: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     visible: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

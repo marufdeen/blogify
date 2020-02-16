@@ -64,7 +64,6 @@ export default class validations {
      * @param {object} body
      * @returns {Array} siginErrors
      */
-
   static signinValidations(body) {
     const { email, password } = body;
     const siginErrors = {};
@@ -88,8 +87,6 @@ export default class validations {
      * @param {object} body
      * @returns {Array} editErrors
      */
-
-
   static async editValidations(body, userId) {
     const { firstName, lastName, email } = body;
     const editErrors = [];

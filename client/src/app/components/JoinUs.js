@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser, loginUser } from '../../actions/authActions';
-import TextField from './partials/TextField';
+import InputField from './partials/InputField';
 import PropTypes from 'prop-types';
 
-class JoinUs extends React.Component {
+class JoinUs extends Component {
     constructor() {
         super();
         this.state = {
@@ -14,7 +14,6 @@ class JoinUs extends React.Component {
             email: '',
             password: '',
             confirmPassword: '',
-            role: 0,
             signupError: {
                 firstName: '',
                 lastName: '',
@@ -63,8 +62,8 @@ class JoinUs extends React.Component {
     }
     render() {
         const { signupError, loginError } = this.state;
-        console.log(loginError) 
         const style = { color: 'red', fontSize: '13px' };
+        
         return (
             <div className="container">
                 <div className="row blog-entries">
@@ -77,7 +76,7 @@ class JoinUs extends React.Component {
                         </div>
                         <form onSubmit={this.signupUser.bind(this)}>
                             <div className="row">
-                                <TextField 
+                                <InputField 
                                 placeholder = 'First Name'
                                 name = 'firstName'
                                 type = 'text'
@@ -85,7 +84,7 @@ class JoinUs extends React.Component {
                                 onChange = {this.onChange}
                                 error = {signupError.firstName}
                                  />
-                                <TextField
+                                <InputField
                                 placeholder = 'Last Name'
                                 name = 'lastName'
                                 type = 'text'
@@ -93,7 +92,7 @@ class JoinUs extends React.Component {
                                 onChange = {this.onChange}
                                 error = {signupError.lastName}
                                  />
-                                <TextField
+                                <InputField
                                 placeholder = 'Email'
                                 name = 'email'
                                 type = 'email'
@@ -101,7 +100,7 @@ class JoinUs extends React.Component {
                                 onChange = {this.onChange}
                                 error = {signupError.email}
                                  />
-                                <TextField
+                                <InputField
                                 placeholder = 'Password'
                                 name = 'password'
                                 type = 'password'
@@ -109,7 +108,7 @@ class JoinUs extends React.Component {
                                 onChange = {this.onChange}
                                 error = {signupError.password}
                                  />
-                                <TextField
+                                <InputField
                                 placeholder = 'Confirm Password'
                                 name = 'confirmPassword'
                                 type = 'password'
@@ -139,14 +138,14 @@ class JoinUs extends React.Component {
                         }  
                         <form onSubmit={this.signinUser.bind(this)}>
                             <div className="row">
-                            <TextField
+                            <InputField
                                 placeholder = 'Email'
                                 name = 'email'
                                 type = 'email'
                                 value = {this.state.email}
                                 onChange = {this.onChange}
                                  />
-                                <TextField
+                                <InputField
                                 placeholder = 'Password'
                                 name = 'password'
                                 type = 'password'

@@ -45,12 +45,60 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    profilePicture: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    company: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    website: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    profession: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    skills: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    github: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    bio: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    twitter: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    facebook: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    linkedIn: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     enabled: {
       type: DataTypes.STRING,
       allowNull: false
     },
     role: {
       type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    profile: {
+      type: DataTypes.BOOLEAN,
       allowNull: true
     },
   }, {});

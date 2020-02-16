@@ -25,6 +25,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      contentImage: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       visible: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,

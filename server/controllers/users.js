@@ -32,6 +32,7 @@ export default class users {
         email,
         password: hash,
         enabled: true,
+        profile: false,
         role,
         date
       });
@@ -61,7 +62,7 @@ export default class users {
             token: createToken(userFound)
           });
         }
-        return res.status(401).json({
+        return res.status(400).json({
           message: 'Email and password not match!'
         });
       });
@@ -126,7 +127,7 @@ export default class users {
   static async getProfile(req, res) {
     const userId = parseInt(req.decoded.userId);
     const userFound = await User.findOne({
-      where: { id: userId }
+      where: [{ id: userId }, { profile: true }]
     });
     if (userFound) {
       return res.status(200).json({
@@ -155,7 +156,19 @@ export default class users {
       await userFound.update({
         firstName: req.body.firstName || userFound.firstName,
         lastName: req.body.lastName || userFound.lastName,
-        email: req.body.email || userFound.email
+        email: req.body.email || userFound.email,
+
+        profilePicture: req.body.profilePicture || userFound.profilePicture,
+        company: req.body.company || userFound.company,
+        website: req.body.website || userFound.website,
+        location: req.body.location || userFound.location,
+        profession: req.body.profession || userFound.profession,
+        skills: req.body.skills || userFound.skills,
+        github: req.body.github || userFound.github,
+        bio: req.body.bio || userFound.bio,
+        twitter: req.body.twitter || userFound.twitter,
+        facebook: req.body.facebook || userFound.facebook,
+        linkedIn: req.body.linkedIn || userFound.linkedIn
       });
       return res.status(200).json({
         message: 'User updated successfully!',
