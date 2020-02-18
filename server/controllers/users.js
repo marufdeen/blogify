@@ -23,7 +23,7 @@ export default class users {
      */
   static async userRegister(req, res) {
     let createUser;
-    const { firstName, lastName, email, password, role } = req.body;
+    const { firstName, lastName, email, password } = req.body;
     const date = new Date().toDateString();
     await bcrypt.hash(password, saltRounds, async (error, hash) => {
       createUser = await User.create({
@@ -33,7 +33,7 @@ export default class users {
         password: hash,
         enabled: true,
         profile: false,
-        role,
+        role: 0,
         date
       });
       return res.status(201).json({
@@ -125,7 +125,7 @@ export default class users {
      * @param {*} res
      */
   static async getProfile(req, res) {
-    const userId = parseInt(req.decoded.userId);
+    const userId = parseInt(req.body.userId);
     const userFound = await User.findOne({
       where: [{ id: userId }, { profile: true }]
     });
@@ -147,17 +147,13 @@ export default class users {
      * @param {*} res
      */
   static async editProfile(req, res) {
-    const userId = parseInt(req.decoded.userId);
+    const userId = parseInt(req.body.userId);
     const userFound = await User.findOne({
       where: { id: userId }
     });
-
     if (userFound) {
       await userFound.update({
-        firstName: req.body.firstName || userFound.firstName,
-        lastName: req.body.lastName || userFound.lastName,
-        email: req.body.email || userFound.email,
-
+        profile: req.body.profile || userFound.profile,
         profilePicture: req.body.profilePicture || userFound.profilePicture,
         company: req.body.company || userFound.company,
         website: req.body.website || userFound.website,

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { getCurrentProfile } from '../../../actions/profileActions';
 class Dashboard extends Component {
+  
+  componentDidMount() {
+  this.props.getCurrentProfile();
+}
    
   render() {
     const { user } = this.props.auth;
@@ -81,4 +85,4 @@ const mapStateToProps = (state) => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps, {  })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);

@@ -11,6 +11,8 @@ class CreateProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            profile: true,
+            userId:  this.props.auth.user.userId,
             profilePicture: '',
             company: '',
             website: '',
@@ -22,8 +24,20 @@ class CreateProfile extends Component {
             twitter: '',
             facebook: '',
             linkedIn: '',
-            profileError: {}
-        };
+            profileError: {
+            profilePicture: '',
+            company: '',
+            website: '',
+            location: '',
+            profession: '',
+            skills: '',
+            github: '',
+            bio: '',
+            twitter: '',
+            facebook: '',
+            linkedIn: ''
+            }
+        }; 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -34,19 +48,8 @@ class CreateProfile extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
-        const profileData = {
-            profilePicture: this.state.profilePicture,
-            company: this.state.company,
-            website: this.state.website,
-            location: this.state.location,
-            profession: this.state.profession,
-            skills: this.state.skills,
-            github: this.state.github,
-            bio: this.state.bio,
-            twitter: this.state.twitter,
-            facebook: this.state.facebook,
-            linkedIn: this.state.linkedIn
-        }
+        console.log('pillow' , this.props.auth.user.userId)
+        const profileData = {...this.state }
        this.props.createProfile(profileData, this.props.history)
     }
     onChange(e) {
@@ -132,6 +135,30 @@ class CreateProfile extends Component {
                                     onChange={this.onChange}
                                     error={profileError.github}
                                 />
+                                <InputField
+                                    placeholder='Twitter Handle'
+                                    name='twitter'
+                                    type='text'
+                                    value={this.state.twitter}
+                                    onChange={this.onChange}
+                                    error={profileError.twitter}
+                                />
+                                <InputField
+                                    placeholder='Facebook Handle'
+                                    name='facebook'
+                                    type='text'
+                                    value={this.state.facebook}
+                                    onChange={this.onChange}
+                                    error={profileError.facebook}
+                                />
+                                <InputField
+                                    placeholder='Linkedin Handle'
+                                    name='linkedIn'
+                                    type='text'
+                                    value={this.state.linkedIn}
+                                    onChange={this.onChange}
+                                    error={profileError.linkedIn}
+                                />
                                 <TextArea
                                     placeholder=' Tell us little about yourself'
                                     name='bio'
@@ -152,7 +179,7 @@ class CreateProfile extends Component {
                             <div className="bio text-center">
                                 <img src="assets/images/person_1.jpg" alt="Image Placeholder" className="img-fluid" />
                                 <div className="bio-body">
-                                    <h2>{user.lastName + ' ' + user.firstName} </h2>
+                                    <h2>{user.lastName + ' ' + user.userId} </h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
                                     <p><a href="#" className="btn btn-primary btn-sm">Read my bio</a></p>
                                     <p className="social">
