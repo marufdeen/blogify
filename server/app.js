@@ -1,5 +1,6 @@
 import 'idempotent-babel-polyfill';
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import routes from './routes/index';
@@ -11,7 +12,12 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/api/v3', routes);
+
+app.get('*', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

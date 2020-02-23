@@ -8,7 +8,7 @@
     "production": "npm run build && node dist/app",
     "build": "babel ./server/ -d ./dist",
     "server": "nodemon server/app --exec babel-node",
-    "client": "npm run client --prefix client",
+    "client": "npm run start:dev --prefix client",
     "start-dev": "concurrently \" npm run server\"  \" npm run client\" ",
     "start": "concurrently \" npm run production\"  \" npm run client\" ",
     "unit:test": "nyc mocha --require @babel/register server/tests/units/index.js --reporter nyan --timeout 15000 --exit ",

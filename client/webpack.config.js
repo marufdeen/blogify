@@ -10,6 +10,12 @@ const config = {
     filename: 'bundle.js',
     publicPath: '/app'
   },
+  devServer: {
+    contentBase: './src',
+    port: 3000,
+    hot: true,
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {

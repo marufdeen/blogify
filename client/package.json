@@ -6,7 +6,8 @@
   "scripts": {
     "install-client": "npm install",
     "client": "npm run install-client && npm run build",
-    "build": "webpack -d  && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --history-api-fallback",
+    "start:dev": "webpack-dev-server --host 0.0.0.0 --hot --mode development",
+    "build": "webpack --mode production",
     "build:prod": "webpack -p  && cp src/index.html dist/index.html"
   },
   "keywords": [
