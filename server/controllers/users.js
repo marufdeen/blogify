@@ -125,9 +125,9 @@ export default class users {
      * @param {*} res
      */
   static async getProfile(req, res) {
-    const userId = parseInt(req.body.userId);
+    const { userId } = req.decoded;
     const userFound = await User.findOne({
-      where: [{ id: userId }, { profile: true }]
+      where: [{ id: userId }]
     });
     if (userFound) {
       return res.status(200).json({
@@ -146,8 +146,8 @@ export default class users {
      * @param {*} req
      * @param {*} res
      */
-  static async editProfile(req, res) {
-    const userId = parseInt(req.body.userId);
+  static async createProfile(req, res) {
+    const userId = parseInt(req.decoded.userId);
     const userFound = await User.findOne({
       where: { id: userId }
     });

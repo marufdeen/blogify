@@ -116,4 +116,8 @@ export default class validations {
     }
     return editErrors;
   }
+
+  static profileValidation(body) {
+    const { company } = body;
+  }
 }

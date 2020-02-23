@@ -4,7 +4,7 @@ import posts from '../controllers/posts';
 import comments from '../controllers/comments';
 import verifyToken from '../middlewares/verifyToken';
 import { isUserValid, isUserAdmin } from '../middlewares/checkAuth';
-import { validateSignup, validateSignin, validateEdit } from '../middlewares/userCredentials';
+import { validateSignup, validateSignin, validateProfile } from '../middlewares/userCredentials';
 import { validatePost } from '../middlewares/validatePostsCredentials';
 import { validateComment } from '../middlewares/validateCommentCredentials';
 
@@ -14,7 +14,7 @@ const app = express.Router();
 app.post('/register', validateSignup, users.userRegister);
 app.post('/login', validateSignin, users.userLogin);
 app.get('/profile', verifyToken, isUserValid, users.getProfile);
-app.put('/editprofile/', users.editProfile); //  verifyToken, isUserValid, validateEdit,
+app.put('/createprofile/', verifyToken, isUserValid, validateProfile, users.createProfile);
 app.get('/users', verifyToken, isUserAdmin, users.getAllUsers);
 app.get('/users/:userId', verifyToken, isUserAdmin, users.getSingleUser);
 app.delete('/deleteuser/:userId', verifyToken, isUserAdmin, users.deleteUser);
