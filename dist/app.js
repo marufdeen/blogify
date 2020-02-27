@@ -9,6 +9,8 @@ require("idempotent-babel-polyfill");
 
 var _express = _interopRequireDefault(require("express"));
 
+var _path = _interopRequireDefault(require("path"));
+
 var _cors = _interopRequireDefault(require("cors"));
 
 var _bodyParser = _interopRequireDefault(require("body-parser"));
@@ -24,7 +26,11 @@ app.use(_bodyParser["default"].json());
 app.use(_bodyParser["default"].urlencoded({
   extended: true
 }));
+app.use(_express["default"]["static"](_path["default"].join(__dirname, '../client/dist')));
 app.use('/api/v3', _index["default"]);
+app.get('*', function (req, res) {
+  return res.status(200).sendFile(_path["default"].join(__dirname, '../client/dist/index.html'));
+});
 app.listen(port, function () {
   console.log("Server running on port ".concat(port));
 });
