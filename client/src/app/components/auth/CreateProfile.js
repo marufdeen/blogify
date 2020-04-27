@@ -48,7 +48,6 @@ class CreateProfile extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
-        console.log('pillow' , this.props.auth.user.userId)
         const profileData = {...this.state }
        this.props.createProfile(profileData, this.props.history)
     }
@@ -179,7 +178,7 @@ class CreateProfile extends Component {
                             <div className="bio text-center">
                                 <img src="assets/images/person_1.jpg" alt="Image Placeholder" className="img-fluid" />
                                 <div className="bio-body">
-                                    <h2>{user.lastName + ' ' + user.userId} </h2>
+                                    <h2> {user.lastName + ' ' + user.userId} </h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
                                     <p><a href="#" className="btn btn-primary btn-sm">Read my bio</a></p>
                                     <p className="social">

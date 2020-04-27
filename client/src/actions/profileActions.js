@@ -7,7 +7,7 @@ export const getCurrentProfile = () => (dispatch) => {
   axios.get('http://localhost:5000/api/v3/profile')
     .then((res) => dispatch({
       type: GET_PROFILE,
-      payload: console.log(res.data)
+      payload: res.data
     }))
     .catch((err) => dispatch({
       type: GET_PROFILE,

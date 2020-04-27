@@ -47,11 +47,7 @@ describe('Test Post Controller', function () {
     };
   });
   describe('Get All Posts', function () {
-    it('should return Posts Found if found',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee() {
+    it('should return Posts Found if found', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var postFound;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -78,11 +74,7 @@ describe('Test Post Controller', function () {
     })));
   });
   describe('Get Single Post', function () {
-    it('should return Post Found if found',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee2() {
+    it('should return Post Found if found', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
       var postFound;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -109,11 +101,7 @@ describe('Test Post Controller', function () {
     })));
   });
   describe('Create Post', function () {
-    it('should return Post created successfully if created',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee3() {
+    it('should return Post created successfully if created', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
       var postFound;
       return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
@@ -136,11 +124,7 @@ describe('Test Post Controller', function () {
     })));
   });
   describe('Get My Posts', function () {
-    it('should return Posts Found if found',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee4() {
+    it('should return Posts Found if found', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
       var postFound;
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
@@ -163,11 +147,7 @@ describe('Test Post Controller', function () {
     })));
   });
   describe('Get My Single Post', function () {
-    it('should return Post Found if found',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee5() {
+    it('should return Post Found if found', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
       var postFound;
       return regeneratorRuntime.wrap(function _callee5$(_context5) {
         while (1) {
@@ -190,11 +170,7 @@ describe('Test Post Controller', function () {
     })));
   });
   describe('Edit My Post', function () {
-    it('should return Post updated successfully! if updated',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee6() {
+    it('should return Post updated successfully! if updated', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
       var postFound;
       return regeneratorRuntime.wrap(function _callee6$(_context6) {
         while (1) {
@@ -218,11 +194,7 @@ describe('Test Post Controller', function () {
     })));
   });
   describe('Delete My Post', function () {
-    it('should return Post deleted along with corresponding comments! if deleted',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee7() {
+    it('should return Post deleted along with corresponding comments! if deleted', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
       var postFound;
       return regeneratorRuntime.wrap(function _callee7$(_context7) {
         while (1) {

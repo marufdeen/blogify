@@ -30,8 +30,10 @@ var app = _express["default"].Router(); // Users Routes
 
 app.post('/register', _userCredentials.validateSignup, _users["default"].userRegister);
 app.post('/login', _userCredentials.validateSignin, _users["default"].userLogin);
-app.get('/profile', _verifyToken["default"], _checkAuth.isUserValid, _users["default"].getProfile);
-app.put('/createprofile/', _verifyToken["default"], _checkAuth.isUserValid, _userCredentials.validateProfile, _users["default"].createProfile);
+app.get('/profile', _verifyToken["default"], _checkAuth.isUserValid, _userCredentials.validateEdit, _users["default"].editDetails);
+app.get('/editDetails', _verifyToken["default"], _checkAuth.isUserValid, _users["default"].getProfile);
+app.put('/createprofile/', _verifyToken["default"], _checkAuth.isUserValid, _users["default"].createProfile); //validateProfile
+
 app.get('/users', _verifyToken["default"], _checkAuth.isUserAdmin, _users["default"].getAllUsers);
 app.get('/users/:userId', _verifyToken["default"], _checkAuth.isUserAdmin, _users["default"].getSingleUser);
 app["delete"]('/deleteuser/:userId', _verifyToken["default"], _checkAuth.isUserAdmin, _users["default"].deleteUser);

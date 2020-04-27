@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser, loginUser } from '../../actions/authActions';
 import InputField from './partials/InputField';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 class JoinUs extends Component {
     constructor() {
@@ -166,11 +166,11 @@ class JoinUs extends Component {
         )
     }
 }
-JoinUs.PropTypes = { 
-    registerUser: PropTypes.func.isRequired,
-    loginUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+JoinUs.propTypes = { 
+    registerUser: propTypes.func.isRequired,
+    loginUser: propTypes.func.isRequired,
+    auth: propTypes.object.isRequired,
+    errors: propTypes.object.isRequired
 };
 const mapStateToProps = (state) => ({
     auth: state.auth,

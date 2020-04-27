@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validateProfile = exports.validateSignin = exports.validateSignup = void 0;
+exports.validateProfile = exports.validateEdit = exports.validateSignin = exports.validateSignup = void 0;
 
 var _userValidations = _interopRequireDefault(require("../helper/userValidations"));
 
@@ -14,12 +14,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* eslint radix: ["error", "as-needed"] */
-var validateSignup =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(req, res, next) {
+var validateSignup = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
     var errors;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -58,12 +54,8 @@ function () {
 
 exports.validateSignup = validateSignup;
 
-var validateSignin =
-/*#__PURE__*/
-function () {
-  var _ref2 = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee2(req, res, next) {
+var validateSignin = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res, next) {
     var errors;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
@@ -102,12 +94,8 @@ function () {
 
 exports.validateSignin = validateSignin;
 
-var validateProfile =
-/*#__PURE__*/
-function () {
-  var _ref3 = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee3(req, res, next) {
+var validateEdit = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res, next) {
     var userId, errors;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
@@ -115,7 +103,7 @@ function () {
           case 0:
             userId = parseInt(req.decoded.userId);
             _context3.next = 3;
-            return _userValidations["default"].profileValidation(req.body, userId);
+            return _userValidations["default"].editValidations(req.body, userId);
 
           case 3:
             errors = _context3.sent;
@@ -140,11 +128,50 @@ function () {
     }, _callee3);
   }));
 
-  return function validateProfile(_x7, _x8, _x9) {
+  return function validateEdit(_x7, _x8, _x9) {
     return _ref3.apply(this, arguments);
   };
-}(); // export const validateProfile = async (req, res next) => {
-// }
+}();
 
+exports.validateEdit = validateEdit;
+
+var validateProfile = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res, next) {
+    var userId, errors;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            userId = parseInt(req.decoded.userId);
+            _context4.next = 3;
+            return _userValidations["default"].profileValidation(req.body, userId);
+
+          case 3:
+            errors = _context4.sent;
+
+            if (!errors[0]) {
+              _context4.next = 6;
+              break;
+            }
+
+            return _context4.abrupt("return", res.status(401).json({
+              errors: errors
+            }));
+
+          case 6:
+            return _context4.abrupt("return", next());
+
+          case 7:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function validateProfile(_x10, _x11, _x12) {
+    return _ref4.apply(this, arguments);
+  };
+}();
 
 exports.validateProfile = validateProfile;

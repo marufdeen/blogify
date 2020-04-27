@@ -18,7 +18,7 @@ export default class validations {
      */
   static async signupValidations(body) {
     const { firstName, lastName, email, password, confirmPassword } = body;
-    const signupErrors = { };
+    const signupErrors = {};
 
     if (!firstName || firstName.length < 3 || !validName.test(firstName)) {
       signupErrors.firstName = [];
@@ -50,11 +50,6 @@ export default class validations {
       signupErrors.confirmPassword = [];
       signupErrors.confirmPassword.push('Passwords don\'t match');
     }
-    // if (role !== 0 || role !== 1) {
-    //   signupErrors.push({
-    //     Role: 'Set role to 0 or 1'
-    //   });
-    // }
     return signupErrors;
   }
 
@@ -118,6 +113,6 @@ export default class validations {
   }
 
   static profileValidation(body) {
-    const { company } = body;
+    const { profile, profilePicture, company, website, location, profession, skills, github, bio, twitter, facebook, linkedIn } = body;
   }
 }

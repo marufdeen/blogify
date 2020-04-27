@@ -23,9 +23,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * @description comments controler
  * class comments
  */
-var comments =
-/*#__PURE__*/
-function () {
+var comments = /*#__PURE__*/function () {
   function comments() {
     _classCallCheck(this, comments);
   }
@@ -40,9 +38,7 @@ function () {
        * @param {*} res
        */
     value: function () {
-      var _createComment = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(req, res) {
+      var _createComment = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         var postId, date, postFound, _req$body, visitorName, visitorEmail, content;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -110,9 +106,7 @@ function () {
   }, {
     key: "deleteComment",
     value: function () {
-      var _deleteComment = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res) {
+      var _deleteComment = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         var userId, postId, commentId, postFound, commentFound;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {

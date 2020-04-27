@@ -142,7 +142,7 @@ export default class users {
 
   /**
      * @description Editprofile
-     * @method editProfile
+     * @method createProfile
      * @param {*} req
      * @param {*} res
      */
@@ -165,6 +165,34 @@ export default class users {
         twitter: req.body.twitter || userFound.twitter,
         facebook: req.body.facebook || userFound.facebook,
         linkedIn: req.body.linkedIn || userFound.linkedIn
+      });
+      return res.status(200).json({
+        message: 'User updated successfully!',
+        userFound
+      });
+    }
+    return res.status(404).json({
+      message: 'User not found'
+    });
+  }
+
+  /**
+     * @description Edit user details
+     * @method editDetails
+     * @param {*} req
+     * @param {*} res
+     */
+  static async editDetails(req, res) {
+    const userId = parseInt(req.decoded.userId);
+    const userFound = await User.findOne({
+      where: { id: userId }
+    });
+
+    if (userFound) {
+      await userFound.update({
+        firstName: req.body.firstName || userFound.firstName,
+        lastName: req.body.lastName || userFound.lastName,
+        email: req.body.email || userFound.email
       });
       return res.status(200).json({
         message: 'User updated successfully!',

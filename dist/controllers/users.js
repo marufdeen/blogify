@@ -34,9 +34,7 @@ var saltRounds = 10;
  * class users
  */
 
-var users =
-/*#__PURE__*/
-function () {
+var users = /*#__PURE__*/function () {
   function users() {
     _classCallCheck(this, users);
   }
@@ -51,9 +49,7 @@ function () {
        * @param {*} res
        */
     value: function () {
-      var _userRegister = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res) {
+      var _userRegister = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         var createUser, _req$body, firstName, lastName, email, password, date;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -63,12 +59,8 @@ function () {
                 _req$body = req.body, firstName = _req$body.firstName, lastName = _req$body.lastName, email = _req$body.email, password = _req$body.password;
                 date = new Date().toDateString();
                 _context2.next = 4;
-                return _bcryptjs["default"].hash(password, saltRounds,
-                /*#__PURE__*/
-                function () {
-                  var _ref = _asyncToGenerator(
-                  /*#__PURE__*/
-                  regeneratorRuntime.mark(function _callee(error, hash) {
+                return _bcryptjs["default"].hash(password, saltRounds, /*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(error, hash) {
                     return regeneratorRuntime.wrap(function _callee$(_context) {
                       while (1) {
                         switch (_context.prev = _context.next) {
@@ -136,9 +128,7 @@ function () {
   }, {
     key: "userLogin",
     value: function () {
-      var _userLogin = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(req, res) {
+      var _userLogin = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
         var _req$body2, email, password, userFound;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
@@ -210,9 +200,7 @@ function () {
   }, {
     key: "getAllUsers",
     value: function () {
-      var _getAllUsers = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4(req, res) {
+      var _getAllUsers = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
         var allUsers;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
@@ -263,9 +251,7 @@ function () {
   }, {
     key: "getSingleUser",
     value: function () {
-      var _getSingleUser = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee5(req, res) {
+      var _getSingleUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
         var userId, userFound;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
@@ -325,9 +311,7 @@ function () {
   }, {
     key: "getProfile",
     value: function () {
-      var _getProfile = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee6(req, res) {
+      var _getProfile = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res) {
         var userId, userFound;
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
@@ -375,7 +359,7 @@ function () {
     }()
     /**
        * @description Editprofile
-       * @method editProfile
+       * @method createProfile
        * @param {*} req
        * @param {*} res
        */
@@ -383,9 +367,7 @@ function () {
   }, {
     key: "createProfile",
     value: function () {
-      var _createProfile = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee7(req, res) {
+      var _createProfile = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(req, res) {
         var userId, userFound;
         return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
@@ -449,6 +431,70 @@ function () {
       return createProfile;
     }()
     /**
+       * @description Edit user details
+       * @method editDetails
+       * @param {*} req
+       * @param {*} res
+       */
+
+  }, {
+    key: "editDetails",
+    value: function () {
+      var _editDetails = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(req, res) {
+        var userId, userFound;
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                userId = parseInt(req.decoded.userId);
+                _context8.next = 3;
+                return _models.User.findOne({
+                  where: {
+                    id: userId
+                  }
+                });
+
+              case 3:
+                userFound = _context8.sent;
+
+                if (!userFound) {
+                  _context8.next = 8;
+                  break;
+                }
+
+                _context8.next = 7;
+                return userFound.update({
+                  firstName: req.body.firstName || userFound.firstName,
+                  lastName: req.body.lastName || userFound.lastName,
+                  email: req.body.email || userFound.email
+                });
+
+              case 7:
+                return _context8.abrupt("return", res.status(200).json({
+                  message: 'User updated successfully!',
+                  userFound: userFound
+                }));
+
+              case 8:
+                return _context8.abrupt("return", res.status(404).json({
+                  message: 'User not found'
+                }));
+
+              case 9:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+
+      function editDetails(_x15, _x16) {
+        return _editDetails.apply(this, arguments);
+      }
+
+      return editDetails;
+    }()
+    /**
        * @description Enable a User from userDB dummy database
        * @method enableUser
        * @param {*} req
@@ -458,102 +504,7 @@ function () {
   }, {
     key: "enableUser",
     value: function () {
-      var _enableUser = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee8(req, res) {
-        var userId, signInId, userFound, postFound;
-        return regeneratorRuntime.wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                userId = parseInt(req.params.userId);
-                signInId = parseInt(req.decoded.userId);
-                _context8.next = 4;
-                return _models.User.findOne({
-                  where: {
-                    id: userId
-                  }
-                });
-
-              case 4:
-                userFound = _context8.sent;
-
-                if (!userFound) {
-                  _context8.next = 16;
-                  break;
-                }
-
-                if (!(userFound.dataValues.id === signInId)) {
-                  _context8.next = 8;
-                  break;
-                }
-
-                return _context8.abrupt("return", res.status(403).json({
-                  message: 'You can\'t enable yourself'
-                }));
-
-              case 8:
-                _context8.next = 10;
-                return userFound.update({
-                  enabled: true
-                });
-
-              case 10:
-                _context8.next = 12;
-                return _models.Post.findAll({
-                  where: [{
-                    userId: userId
-                  }, {
-                    visible: false
-                  }]
-                });
-
-              case 12:
-                postFound = _context8.sent;
-                _context8.next = 15;
-                return postFound.forEach(function (post) {
-                  post.update({
-                    visible: true
-                  });
-                });
-
-              case 15:
-                return _context8.abrupt("return", res.status(200).json({
-                  message: 'User successfully enabled!'
-                }));
-
-              case 16:
-                return _context8.abrupt("return", res.status(201).json({
-                  message: 'User not found!'
-                }));
-
-              case 17:
-              case "end":
-                return _context8.stop();
-            }
-          }
-        }, _callee8);
-      }));
-
-      function enableUser(_x15, _x16) {
-        return _enableUser.apply(this, arguments);
-      }
-
-      return enableUser;
-    }()
-    /**
-       * @description Disable a User from userDB dummy database
-       * @method disableUser
-       * @param {*} req
-       * @param {*} res
-       */
-
-  }, {
-    key: "disableUser",
-    value: function () {
-      var _disableUser = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee9(req, res) {
+      var _enableUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(req, res) {
         var userId, signInId, userFound, postFound;
         return regeneratorRuntime.wrap(function _callee9$(_context9) {
           while (1) {
@@ -582,13 +533,13 @@ function () {
                 }
 
                 return _context9.abrupt("return", res.status(403).json({
-                  message: 'You can\'t disable yourself'
+                  message: 'You can\'t enable yourself'
                 }));
 
               case 8:
                 _context9.next = 10;
                 return userFound.update({
-                  enabled: false
+                  enabled: true
                 });
 
               case 10:
@@ -597,7 +548,7 @@ function () {
                   where: [{
                     userId: userId
                   }, {
-                    visible: true
+                    visible: false
                   }]
                 });
 
@@ -606,13 +557,13 @@ function () {
                 _context9.next = 15;
                 return postFound.forEach(function (post) {
                   post.update({
-                    visible: false
+                    visible: true
                   });
                 });
 
               case 15:
                 return _context9.abrupt("return", res.status(200).json({
-                  message: 'User successfully disabled!'
+                  message: 'User successfully enabled!'
                 }));
 
               case 16:
@@ -628,26 +579,24 @@ function () {
         }, _callee9);
       }));
 
-      function disableUser(_x17, _x18) {
-        return _disableUser.apply(this, arguments);
+      function enableUser(_x17, _x18) {
+        return _enableUser.apply(this, arguments);
       }
 
-      return disableUser;
+      return enableUser;
     }()
     /**
-       * @description Delete User from userDB dummy database
-       * @method deleteUser
+       * @description Disable a User from userDB dummy database
+       * @method disableUser
        * @param {*} req
        * @param {*} res
        */
 
   }, {
-    key: "deleteUser",
+    key: "disableUser",
     value: function () {
-      var _deleteUser = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee10(req, res) {
-        var userId, signInId, userFound;
+      var _disableUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(req, res) {
+        var userId, signInId, userFound, postFound;
         return regeneratorRuntime.wrap(function _callee10$(_context10) {
           while (1) {
             switch (_context10.prev = _context10.next) {
@@ -665,35 +614,55 @@ function () {
                 userFound = _context10.sent;
 
                 if (!userFound) {
-                  _context10.next = 11;
+                  _context10.next = 16;
                   break;
                 }
 
-                if (!(userFound.id === signInId)) {
+                if (!(userFound.dataValues.id === signInId)) {
                   _context10.next = 8;
                   break;
                 }
 
                 return _context10.abrupt("return", res.status(403).json({
-                  message: 'You can\'t delete yourself'
+                  message: 'You can\'t disable yourself'
                 }));
 
               case 8:
                 _context10.next = 10;
-                return userFound.destroy();
+                return userFound.update({
+                  enabled: false
+                });
 
               case 10:
+                _context10.next = 12;
+                return _models.Post.findAll({
+                  where: [{
+                    userId: userId
+                  }, {
+                    visible: true
+                  }]
+                });
+
+              case 12:
+                postFound = _context10.sent;
+                _context10.next = 15;
+                return postFound.forEach(function (post) {
+                  post.update({
+                    visible: false
+                  });
+                });
+
+              case 15:
                 return _context10.abrupt("return", res.status(200).json({
-                  message: 'User successfully deleted!',
-                  userFound: userFound
+                  message: 'User successfully disabled!'
                 }));
 
-              case 11:
+              case 16:
                 return _context10.abrupt("return", res.status(201).json({
                   message: 'User not found!'
                 }));
 
-              case 12:
+              case 17:
               case "end":
                 return _context10.stop();
             }
@@ -701,7 +670,78 @@ function () {
         }, _callee10);
       }));
 
-      function deleteUser(_x19, _x20) {
+      function disableUser(_x19, _x20) {
+        return _disableUser.apply(this, arguments);
+      }
+
+      return disableUser;
+    }()
+    /**
+       * @description Delete User from userDB dummy database
+       * @method deleteUser
+       * @param {*} req
+       * @param {*} res
+       */
+
+  }, {
+    key: "deleteUser",
+    value: function () {
+      var _deleteUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(req, res) {
+        var userId, signInId, userFound;
+        return regeneratorRuntime.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                userId = parseInt(req.params.userId);
+                signInId = parseInt(req.decoded.userId);
+                _context11.next = 4;
+                return _models.User.findOne({
+                  where: {
+                    id: userId
+                  }
+                });
+
+              case 4:
+                userFound = _context11.sent;
+
+                if (!userFound) {
+                  _context11.next = 11;
+                  break;
+                }
+
+                if (!(userFound.id === signInId)) {
+                  _context11.next = 8;
+                  break;
+                }
+
+                return _context11.abrupt("return", res.status(403).json({
+                  message: 'You can\'t delete yourself'
+                }));
+
+              case 8:
+                _context11.next = 10;
+                return userFound.destroy();
+
+              case 10:
+                return _context11.abrupt("return", res.status(200).json({
+                  message: 'User successfully deleted!',
+                  userFound: userFound
+                }));
+
+              case 11:
+                return _context11.abrupt("return", res.status(201).json({
+                  message: 'User not found!'
+                }));
+
+              case 12:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11);
+      }));
+
+      function deleteUser(_x21, _x22) {
         return _deleteUser.apply(this, arguments);
       }
 

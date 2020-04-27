@@ -11,18 +11,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var isUserValid =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(_ref2, res, next) {
+var isUserValid = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref, res, next) {
     var userId, userFound;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            userId = _ref2.decoded.userId;
+            userId = _ref.decoded.userId;
             _context.next = 3;
             return _models.User.findOne({
               where: {
@@ -54,24 +50,20 @@ function () {
   }));
 
   return function isUserValid(_x, _x2, _x3) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 
 exports.isUserValid = isUserValid;
 
-var isUserAdmin =
-/*#__PURE__*/
-function () {
-  var _ref3 = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee2(_ref4, res, next) {
+var isUserAdmin = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(_ref3, res, next) {
     var userId, userFound;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            userId = _ref4.decoded.userId;
+            userId = _ref3.decoded.userId;
             _context2.next = 3;
             return _models.User.findOne({
               where: {
@@ -103,7 +95,7 @@ function () {
   }));
 
   return function isUserAdmin(_x4, _x5, _x6) {
-    return _ref3.apply(this, arguments);
+    return _ref4.apply(this, arguments);
   };
 }();
 

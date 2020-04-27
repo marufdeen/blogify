@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getCurrentProfile } from '../../../actions/profileActions';
-class Dashboard extends Component {
-  
+
+class Dashboard extends Component {  
   componentDidMount() {
   this.props.getCurrentProfile();
 }
@@ -13,16 +13,13 @@ class Dashboard extends Component {
     const { profile, loading } = this.props.profile;
     let dashboardContent;
 
-    if (profile === null || loading) {
-      dashboardContent = <h1>Loading ...</h1>
-    } else {
       // If logged in user has a profile
-      if (Object.keys(user).length < 0) {
+      if (user.profile === false) {
         dashboardContent = <h1>Display Profile</h1>
       } else {
       dashboardContent = <h2>Welcome! { user.firstName }.</h2>
       }
-    }
+    
     
     return (
       <div className="container">

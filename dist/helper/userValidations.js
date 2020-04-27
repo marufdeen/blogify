@@ -32,9 +32,7 @@ var checkEmail = function checkEmail(email) {
  */
 
 
-var validations =
-/*#__PURE__*/
-function () {
+var validations = /*#__PURE__*/function () {
   function validations() {
     _classCallCheck(this, validations);
   }
@@ -49,9 +47,7 @@ function () {
        * @returns {Array} signupErrors
        */
     value: function () {
-      var _signupValidations = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(body) {
+      var _signupValidations = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(body) {
         var firstName, lastName, email, password, confirmPassword, signupErrors, emailAlreadyExist;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -94,12 +90,7 @@ function () {
                 if (!confirmPassword || confirmPassword !== password) {
                   signupErrors.confirmPassword = [];
                   signupErrors.confirmPassword.push('Passwords don\'t match');
-                } // if (role !== 0 || role !== 1) {
-                //   signupErrors.push({
-                //     Role: 'Set role to 0 or 1'
-                //   });
-                // }
-
+                }
 
                 return _context.abrupt("return", signupErrors);
 
@@ -153,9 +144,7 @@ function () {
   }, {
     key: "editValidations",
     value: function () {
-      var _editValidations = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(body, userId) {
+      var _editValidations = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(body, userId) {
         var firstName, lastName, email, editErrors, emailAlreadyExist;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -212,7 +201,18 @@ function () {
   }, {
     key: "profileValidation",
     value: function profileValidation(body) {
-      var company = body.company;
+      var profile = body.profile,
+          profilePicture = body.profilePicture,
+          company = body.company,
+          website = body.website,
+          location = body.location,
+          profession = body.profession,
+          skills = body.skills,
+          github = body.github,
+          bio = body.bio,
+          twitter = body.twitter,
+          facebook = body.facebook,
+          linkedIn = body.linkedIn;
     }
   }]);
 

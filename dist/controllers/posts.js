@@ -23,9 +23,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * @description posts controller
  * class posts
  */
-var postController =
-/*#__PURE__*/
-function () {
+var postController = /*#__PURE__*/function () {
   function postController() {
     _classCallCheck(this, postController);
   }
@@ -40,9 +38,7 @@ function () {
      * @param {*} res
      */
     value: function () {
-      var _createPost = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(req, res) {
+      var _createPost = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         var userId, _req$body, title, content, date;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -90,9 +86,7 @@ function () {
   }, {
     key: "getPosts",
     value: function () {
-      var _getPosts = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res) {
+      var _getPosts = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         var permittedPosts;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -147,9 +141,7 @@ function () {
   }, {
     key: "getSinglePost",
     value: function () {
-      var _getSinglePost = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(req, res) {
+      var _getSinglePost = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
         var postId, postFound;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
@@ -211,9 +203,7 @@ function () {
   }, {
     key: "myPosts",
     value: function () {
-      var _myPosts = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4(req, res) {
+      var _myPosts = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
         var userId, postsFound;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
@@ -271,9 +261,7 @@ function () {
   }, {
     key: "mySinglePost",
     value: function () {
-      var _mySinglePost = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee5(req, res) {
+      var _mySinglePost = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
         var userId, postId, postFound;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
@@ -338,9 +326,7 @@ function () {
   }, {
     key: "editMyPost",
     value: function () {
-      var _editMyPost = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee6(req, res) {
+      var _editMyPost = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res) {
         var postId, userId, postFound;
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
@@ -408,9 +394,7 @@ function () {
   }, {
     key: "deleteMyPost",
     value: function () {
-      var _deleteMyPost = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee7(req, res) {
+      var _deleteMyPost = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(req, res) {
         var postId, userId, postFound;
         return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {

@@ -47,11 +47,7 @@ describe('Test User Controller', function () {
     };
   });
   describe('user Registration', function () {
-    it('should return User successfully created',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee() {
+    it('should return User successfully created', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var result;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -76,11 +72,7 @@ describe('Test User Controller', function () {
     })));
   });
   describe('user Login', function () {
-    it.skip('should return Access Granted! if details are correct',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee2() {
+    it.skip('should return Access Granted! if details are correct', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
       var result;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -102,11 +94,7 @@ describe('Test User Controller', function () {
         }
       }, _callee2);
     })));
-    it('should return Invalid Credentials! if details are incorrect',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee3() {
+    it('should return Invalid Credentials! if details are incorrect', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
       var result;
       return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
@@ -129,11 +117,7 @@ describe('Test User Controller', function () {
     })));
   });
   describe('Get All Users', function () {
-    it('should return Success if users are found',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee4() {
+    it('should return Success if users are found', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
       var userFound;
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
@@ -156,11 +140,7 @@ describe('Test User Controller', function () {
     })));
   });
   describe('Get Single User', function () {
-    it('should return Success if users are found',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee5() {
+    it('should return Success if users are found', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
       var userFound;
       return regeneratorRuntime.wrap(function _callee5$(_context5) {
         while (1) {
@@ -183,11 +163,7 @@ describe('Test User Controller', function () {
     })));
   });
   describe('Edit Profile', function () {
-    it('should return Success if users are found',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee6() {
+    it('should return Success if users are found', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
       var userFound;
       return regeneratorRuntime.wrap(function _callee6$(_context6) {
         while (1) {
@@ -210,11 +186,7 @@ describe('Test User Controller', function () {
     })));
   });
   describe('Delete User', function () {
-    it('should return User successfully deleted!, if user is deleted',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee7() {
+    it('should return User successfully deleted!, if user is deleted', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
       var userFound;
       return regeneratorRuntime.wrap(function _callee7$(_context7) {
         while (1) {
@@ -243,11 +215,7 @@ describe('Test User Controller', function () {
     })));
   });
   describe('Enable User', function () {
-    it('should return User successfully enabled!, if user is enabled',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee8() {
+    it('should return User successfully enabled!, if user is enabled', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
       var userFound;
       return regeneratorRuntime.wrap(function _callee8$(_context8) {
         while (1) {
@@ -276,11 +244,7 @@ describe('Test User Controller', function () {
     })));
   });
   describe('Disable User', function () {
-    it('should return User successfully disabled!, if user is disabled',
-    /*#__PURE__*/
-    _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee9() {
+    it('should return User successfully disabled!, if user is disabled', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
       var userFound;
       return regeneratorRuntime.wrap(function _callee9$(_context9) {
         while (1) {
