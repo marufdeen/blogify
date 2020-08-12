@@ -1,12 +1,12 @@
 /* eslint-disable no-return-assign */
 import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
 import { User, Post } from '../models';
 import createToken from '../helper/createToken';
+//import dotenv from 'dotenv';
 
 /* eslint radix: ["error", "as-needed"] */
 
-dotenv.config();
+/* dotenv.config(); */
 const saltRounds = 10;
 
 /**

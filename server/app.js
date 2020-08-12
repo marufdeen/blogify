@@ -14,13 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/api/v3', routes);
-
-app.get('*', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
-
+ 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
 export default app;
+
+//  "start": "concurrently \" npm run production\"  \" npm run client\" ",

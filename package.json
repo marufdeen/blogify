@@ -10,7 +10,7 @@
     "server": "nodemon server/app --exec babel-node",
     "client": "npm run start:dev --prefix client",
     "start-dev": "concurrently \" npm run server\"  \" npm run client\" ",
-    "start": "concurrently \" npm run production\"  \" npm run client\" ",
+    "start": "nodemon server/app --exec babel-node",
     "unit:test": "nyc mocha --require @babel/register server/tests/units/index.js --reporter nyan --timeout 15000 --exit ",
     "int:test": "nyc mocha --require @babel/register server/tests/integrations/index.js --reporter nyan --timeout 15000 --exit ",
     "test": "nyc mocha --require @babel/register server/tests/**.test.js --reporter nyan --timeout 15000 --exit "
