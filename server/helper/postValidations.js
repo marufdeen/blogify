@@ -8,7 +8,7 @@ export const validate = (body) => {
   }
   if (!content) {
     postErrors.push({
-      title: 'Please, write something. Your content is missing'
+      content: 'Please, write something. Your content is missing'
     });
   }
   return postErrors;

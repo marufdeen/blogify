@@ -11,7 +11,7 @@ import { validateComment } from '../middlewares/validateCommentCredentials';
 const app = express.Router();
 
 // Users Routes
-app.post('/register', validateSignup, users.userRegister);
+app.post('/register', validateSignup,validateAuthSignUp, users.userRegister);
 app.post('/login', validateSignin, users.userLogin);
 app.get('/profile', verifyToken, isUserValid, validateEdit, users.editDetails);
 app.get('/editDetails', verifyToken, isUserValid, users.getProfile);
