@@ -1,7 +1,7 @@
 import { validate } from '../helper/commentValidations';
 
-export const validateComment = (req, res, next) => {
-  const errors = validate(req.body);
+export const validateComment = async (req, res, next) => {
+  const errors = await validate(req.body);
   if (errors[0]) {
     return res.status(401).json({
       errors

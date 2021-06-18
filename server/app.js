@@ -22,3 +22,4 @@ app.listen(port, () => {
 export default app;
 
 //  "start": "concurrently \" npm run production\"  \" npm run client\" ",
+//  "start": "concurrently \"npm run server\"  \"npm run client\" ",

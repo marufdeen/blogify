@@ -2,7 +2,7 @@
 import bcrypt from 'bcryptjs';
 import { User, Post } from '../models';
 import createToken from '../helper/createToken';
-//import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
 /* eslint radix: ["error", "as-needed"] */
 
